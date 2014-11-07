@@ -1,9 +1,7 @@
 package co.leantechniques.feature;
 
 import co.leantechniques.config.WebAppConfigurationAware;
-import co.leantechniques.portfolio.Holding;
-import co.leantechniques.portfolio.InMemoryStockMarket;
-import co.leantechniques.portfolio.PortfolioController;
+import co.leantechniques.portfolio.*;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -15,8 +13,9 @@ import static org.junit.Assert.assertThat;
 public class StockPortfolioSteps extends WebAppConfigurationAware {
 
   private InMemoryStockMarket inMemoryStockMarket = new InMemoryStockMarket();
+  private InMemoryPortfolioRepository inMemoryPortfolioRepository = new InMemoryPortfolioRepository();
 
-  PortfolioController portfolioController = new PortfolioController(inMemoryStockMarket);
+  PortfolioController portfolioController = new PortfolioController(inMemoryStockMarket, inMemoryPortfolioRepository);
 
   @Given("^\"(.*)\" costs \\$(.*)$")
   public void setCurrentStockPrice(String stockSymbol, double price) throws Throwable {
