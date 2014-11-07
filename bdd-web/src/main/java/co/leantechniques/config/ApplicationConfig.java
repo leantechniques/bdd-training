@@ -2,6 +2,8 @@ package co.leantechniques.config;
 
 import static org.springframework.context.annotation.ComponentScan.Filter;
 
+import co.leantechniques.portfolio.InMemoryStockMarket;
+import co.leantechniques.portfolio.StockMarket;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,7 +15,7 @@ import co.leantechniques.Application;
 
 @Configuration
 @ComponentScan(basePackageClasses = Application.class, excludeFilters = @Filter({Controller.class, Configuration.class}))
-class ApplicationConfig {
+public class ApplicationConfig implements BeanConfig {
 	
 	@Bean
 	public static PropertyPlaceholderConfigurer propertyPlaceholderConfigurer() {
@@ -21,5 +23,11 @@ class ApplicationConfig {
 		ppc.setLocation(new ClassPathResource("/persistence.properties"));
 		return ppc;
 	}
+
+  @Bean
+  @Override
+  public StockMarket stockMarket(){
+    return new StockMarketClient();
+  }
 	
 }

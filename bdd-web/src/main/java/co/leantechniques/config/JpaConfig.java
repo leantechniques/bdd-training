@@ -21,7 +21,7 @@ import co.leantechniques.Application;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackageClasses = Application.class)
-class JpaConfig implements TransactionManagementConfigurer {
+public class JpaConfig implements TransactionManagementConfigurer {
 
     @Value("${dataSource.driverClassName}")
     private String driver;

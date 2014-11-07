@@ -13,7 +13,7 @@ import javax.inject.Inject;
 
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+
 @ActiveProfiles("test")
 @WebAppConfiguration
 @ContextConfiguration(classes = {ApplicationConfig.class, EmbeddedDataSourceConfig.class, JpaConfig.class, SecurityConfig.class, WebMvcConfig.class})

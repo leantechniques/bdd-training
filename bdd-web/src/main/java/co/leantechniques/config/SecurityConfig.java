@@ -14,7 +14,7 @@ import co.leantechniques.account.UserService;
 
 @Configuration
 @ImportResource(value = "classpath:spring-security-context.xml")
-class SecurityConfig {
+public class SecurityConfig {
 	
 	@Bean
 	public UserService userService() {
