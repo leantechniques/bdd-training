@@ -2,7 +2,7 @@ package co.leantechniques.config;
 
 import static org.springframework.context.annotation.ComponentScan.Filter;
 
-import co.leantechniques.portfolio.InMemoryStockMarket;
+import co.leantechniques.portfolio.StockMarketInMemory;
 import co.leantechniques.portfolio.StockMarket;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;
@@ -27,7 +27,7 @@ public class ApplicationConfig implements BeanConfig {
   @Bean
   @Override
   public StockMarket stockMarket(){
-    return new StockMarketClient();
+    return new StockMarketInMemory();
   }
 	
 }

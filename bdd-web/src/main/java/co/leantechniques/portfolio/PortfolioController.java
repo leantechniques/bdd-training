@@ -23,15 +23,15 @@ public class PortfolioController {
     this.repository = repository;
   }
 
-  public void purchaseDollarAmount(Principal principal, String stockSymbol, double price) {
-    double unitPrice = stockMarket.getUnitPrice(stockSymbol);
-    int wholeShares = (int) (price / unitPrice);
-    repository.save(principal.getName(), new Holding(stockSymbol, wholeShares, unitPrice));
-  }
-
   @RequestMapping(value="/portfolio", method=POST)
-  public String purchaseShares(Principal principal, @RequestParam String stock, @RequestParam int shares){
-    repository.save(principal.getName(), new Holding(stock, shares, stockMarket.getUnitPrice(stock)));
+  public String purchase(Principal principal, @RequestParam String stock, @RequestParam(required = false) Integer shares, @RequestParam(required = false) Double amount){
+    double unitPrice = stockMarket.getUnitPrice(stock);
+
+    Integer sharesToBuy = shares;
+    if(amount!=null){
+      sharesToBuy = (int) (amount / unitPrice);
+    }
+    repository.save(principal.getName(), new Holding(stock, sharesToBuy, unitPrice));
     return "redirect:/portfolio";
   }
 

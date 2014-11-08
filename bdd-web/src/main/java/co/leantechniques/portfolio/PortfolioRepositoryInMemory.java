@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import java.util.*;
 
 @Repository
-public class InMemoryPortfolioRepository implements PortfolioRepository{
+public class PortfolioRepositoryInMemory implements PortfolioRepository{
 
   private Map<String, Holding> holdingsByStockSymbol = new HashMap<>();
 

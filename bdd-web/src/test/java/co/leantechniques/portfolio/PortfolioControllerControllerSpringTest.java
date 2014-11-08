@@ -29,13 +29,18 @@ public class PortfolioControllerControllerSpringTest extends WebSecurityConfigur
   public void purchaseSharesForPortfolio() throws Exception {
     MockHttpSession session = getAuthenticatedMockSession("admin", "admin");
     MvcResult result = mockMvc.perform(post("/portfolio?stock=PFG&shares=3").session(session))
-//            .andDo(print())
-//            .andExpect(MockMvcResultMatchers.)
-//            .andExpect(model().attribute("shares", is(3)))
             .andReturn();
-//    assertThat(result.getModelAndView().getViewName(), is("portfolio/list"));
     assertThat(result.getRequest().getParameter("stock"), is("PFG"));
     assertThat(result.getRequest().getParameter("shares"), is("3"));
+  }
+
+  @Test
+  public void purchaseByAmount() throws Exception {
+    MockHttpSession session = getAuthenticatedMockSession("admin", "admin");
+    MvcResult result = mockMvc.perform(post("/portfolio?stock=PFG&amount=22.22").session(session))
+            .andReturn();
+    assertThat(result.getRequest().getParameter("stock"), is("PFG"));
+    assertThat(result.getRequest().getParameter("amount"), is("22.22"));
   }
 
 }

@@ -28,15 +28,24 @@
     <form method="post" action="/portfolio">
         <label>
             Stock Symbol:
-            <input type="text" name="stock" />
+            <input type="text" name="stock"/>
         </label>
         <label>
-            Shares:<input type="text" name="shares" />
+            Shares:<input type="text" name="shares"/>
+        </label>
+        <button type="submit">Buy</button>
+    </form>
+    <form method="post" action="/portfolio">
+        <label>
+            Stock Symbol:
+            <input type="text" name="stock"/>
+        </label>
+        <label>
+            Total Amount: <input type="text" name="amount"/>
         </label>
         <button type="submit">Buy</button>
     </form>
 </div>
 
-<div th:replace="fragments/footer :: footer">&nbsp;</div>
 </body>
 </html>

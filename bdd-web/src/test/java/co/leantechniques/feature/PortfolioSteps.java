@@ -12,27 +12,27 @@ import static org.hamcrest.Matchers.closeTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-public class StockPortfolioSteps extends WebAppConfigurationAware {
+public class PortfolioSteps extends WebAppConfigurationAware {
 
-  private InMemoryStockMarket inMemoryStockMarket = new InMemoryStockMarket();
-  private InMemoryPortfolioRepository inMemoryPortfolioRepository = new InMemoryPortfolioRepository();
+  private StockMarketInMemory stockMarketInMemory = new StockMarketInMemory();
+  private PortfolioRepositoryInMemory portfolioRepository = new PortfolioRepositoryInMemory();
   private Principal principal = new FakePrincipal();
 
-  PortfolioController portfolioController = new PortfolioController(inMemoryStockMarket, inMemoryPortfolioRepository);
+  PortfolioController portfolioController = new PortfolioController(stockMarketInMemory, portfolioRepository);
 
   @Given("^\"(.*)\" costs \\$(.*)$")
   public void setCurrentStockPrice(String stockSymbol, double price) throws Throwable {
-      inMemoryStockMarket.setCurretPrice(stockSymbol, price);
+      stockMarketInMemory.setCurrentPrice(stockSymbol, price);
   }
 
   @When("^I purchase \\$(.*) of \"(.*)\" stock$")
   public void purchaseDollarAmountOfStock(double price, String stockSymbol) throws Throwable {
-    portfolioController.purchaseDollarAmount(principal, stockSymbol, price);
+    portfolioController.purchase(principal, stockSymbol, null, price);
   }
 
   @When("^I purchase (.*) shares of \"(.*)\"$")
   public void purchaseNumberOfSharesOfStock(int shares, String stockSymbol) throws Throwable {
-    portfolioController.purchaseShares(principal, stockSymbol, shares);
+    portfolioController.purchase(principal, stockSymbol, shares, null);
   }
 
   @Then("^I own (.*) shares of \"(.*)\" for \\$(.*)$")

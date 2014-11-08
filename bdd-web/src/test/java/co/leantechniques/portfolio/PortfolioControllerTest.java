@@ -12,12 +12,12 @@ import java.security.Principal;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PortfolioControllerTest {
@@ -31,6 +31,7 @@ public class PortfolioControllerTest {
 
   private Principal principal = new FakePrincipal();
   private HoldingBuilder holdingBuilder = new HoldingBuilder();
+  private ArgumentCaptor<Holding> holdingCaptor = ArgumentCaptor.forClass(Holding.class);
 
   @Before
   public void setup() {
@@ -39,12 +40,11 @@ public class PortfolioControllerTest {
   }
 
   @Test
-  public void purchaseAmount(){
-    controller.purchaseShares(principal, "PFG", 1);
+  public void purchaseNumberOfShares(){
+    controller.purchase(principal, "PFG", 1, null);
 
-    ArgumentCaptor<Holding> captor = ArgumentCaptor.forClass(Holding.class);
-    verify(repository).save(anyString(), captor.capture());
-    Holding actual = captor.getValue();
+    verify(repository).save(anyString(), holdingCaptor.capture());
+    Holding actual = holdingCaptor.getValue();
     assertThat(actual.getStockSymbol(), is("PFG"));
     assertThat(actual.getUnits(), is(1));
     assertThat(actual.getValue(), is(11.11));
@@ -52,11 +52,10 @@ public class PortfolioControllerTest {
 
   @Test
   public void purchaseTotal(){
-    controller.purchaseDollarAmount(principal, "PFG", 100);
+    controller.purchase(principal, "PFG", null, 100.0);
 
-    ArgumentCaptor<Holding> captor = ArgumentCaptor.forClass(Holding.class);
-    verify(repository).save(anyString(), captor.capture());
-    Holding actual = captor.getValue();
+    verify(repository).save(anyString(), holdingCaptor.capture());
+    Holding actual = holdingCaptor.getValue();
     assertThat(actual.getStockSymbol(), is("PFG"));
     assertThat(actual.getUnits(), is(9));
     assertThat(actual.getValue(), is(11.11));
