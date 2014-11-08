@@ -6,6 +6,8 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
+import java.security.Principal;
+
 import static org.hamcrest.Matchers.closeTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -14,6 +16,7 @@ public class StockPortfolioSteps extends WebAppConfigurationAware {
 
   private InMemoryStockMarket inMemoryStockMarket = new InMemoryStockMarket();
   private InMemoryPortfolioRepository inMemoryPortfolioRepository = new InMemoryPortfolioRepository();
+  private Principal principal = new FakePrincipal();
 
   PortfolioController portfolioController = new PortfolioController(inMemoryStockMarket, inMemoryPortfolioRepository);
 
@@ -24,17 +27,17 @@ public class StockPortfolioSteps extends WebAppConfigurationAware {
 
   @When("^I purchase \\$(.*) of \"(.*)\" stock$")
   public void purchaseDollarAmountOfStock(double price, String stockSymbol) throws Throwable {
-    portfolioController.purchaseDollarAmount(stockSymbol, price);
+    portfolioController.purchaseDollarAmount(principal, stockSymbol, price);
   }
 
   @When("^I purchase (.*) shares of \"(.*)\"$")
   public void purchaseNumberOfSharesOfStock(int shares, String stockSymbol) throws Throwable {
-    portfolioController.purchaseShares(stockSymbol, shares);
+    portfolioController.purchaseShares(principal, stockSymbol, shares);
   }
 
   @Then("^I own (.*) shares of \"(.*)\" for \\$(.*)$")
   public void thenIOwnSharesOfStockAtPrice(int expectedNumberOfShares, String stockSymbol, double price) throws Throwable {
-    Holding holding = portfolioController.getHolding(stockSymbol);
+    Holding holding = portfolioController.getHolding(principal, stockSymbol);
     assertThat(holding.getUnits(), is(expectedNumberOfShares));
     assertThat(holding.getStockSymbol(), is(stockSymbol));
     assertThat(holding.getTotal(), closeTo(price, .0001));

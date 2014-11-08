@@ -11,7 +11,6 @@
 <div th:replace="fragments/header :: header">&nbsp;</div>
 
 <div class="container">
-    portfolio/list
     <div class="table-responsive">
         <table class="table table-hover">
             <tr>
@@ -26,6 +25,16 @@
             </tr>
         </table>
     </div>
+    <form method="post" action="/portfolio">
+        <label>
+            Stock Symbol:
+            <input type="text" name="stock" />
+        </label>
+        <label>
+            Shares:<input type="text" name="shares" />
+        </label>
+        <button type="submit">Buy</button>
+    </form>
 </div>
 
 <div th:replace="fragments/footer :: footer">&nbsp;</div>

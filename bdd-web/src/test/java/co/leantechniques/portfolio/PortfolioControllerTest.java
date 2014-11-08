@@ -3,7 +3,7 @@ package co.leantechniques.portfolio;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,20 +17,17 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PortfolioControllerTest {
 
   @Mock
   private StockMarket stockMarket;
-
   @Mock
   private PortfolioRepository repository;
 
-  @InjectMocks
-  private PortfolioController portfolioController;
+  private PortfolioController controller;
 
   private Principal principal = new FakePrincipal();
   private HoldingBuilder holdingBuilder = new HoldingBuilder();
@@ -38,26 +35,31 @@ public class PortfolioControllerTest {
   @Before
   public void setup() {
     when(stockMarket.getUnitPrice(anyString())).thenReturn(11.11);
+    controller = new PortfolioController(stockMarket, repository);
   }
 
   @Test
   public void purchaseAmount(){
-    portfolioController.purchaseShares("PFG", 1);
+    controller.purchaseShares(principal, "PFG", 1);
 
-    Holding holding = portfolioController.getHolding("PFG");
-    assertThat(holding.getStockSymbol(), is("PFG"));
-    assertThat(holding.getUnits(), is(1));
-    assertThat(holding.getValue(), is(11.11));
+    ArgumentCaptor<Holding> captor = ArgumentCaptor.forClass(Holding.class);
+    verify(repository).save(anyString(), captor.capture());
+    Holding actual = captor.getValue();
+    assertThat(actual.getStockSymbol(), is("PFG"));
+    assertThat(actual.getUnits(), is(1));
+    assertThat(actual.getValue(), is(11.11));
   }
 
   @Test
   public void purchaseTotal(){
-    portfolioController.purchaseDollarAmount("PFG", 100);
+    controller.purchaseDollarAmount(principal, "PFG", 100);
 
-    Holding holding = portfolioController.getHolding("PFG");
-    assertThat(holding.getStockSymbol(), is("PFG"));
-    assertThat(holding.getUnits(), is(9));
-    assertThat(holding.getValue(), is(11.11));
+    ArgumentCaptor<Holding> captor = ArgumentCaptor.forClass(Holding.class);
+    verify(repository).save(anyString(), captor.capture());
+    Holding actual = captor.getValue();
+    assertThat(actual.getStockSymbol(), is("PFG"));
+    assertThat(actual.getUnits(), is(9));
+    assertThat(actual.getValue(), is(11.11));
   }
 
   @Test
@@ -67,10 +69,9 @@ public class PortfolioControllerTest {
             holdingBuilder.withSymbol("GOOG").withPrice(945.23).build(),
             holdingBuilder.build()));
 
-    ModelAndView modelAndView = portfolioController.list(principal);
+    ModelAndView modelAndView = controller.list(principal);
 
     assertThat(modelAndView.getViewName(), is("portfolio/list"));
     assertThat((List<Holding>)modelAndView.getModel().get("portfolioList"), hasSize(3));
   }
-
 }

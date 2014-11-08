@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -18,7 +16,6 @@ public class PortfolioController {
 
   private StockMarket stockMarket;
   private PortfolioRepository repository;
-  private Map<String, Holding> holdings = new HashMap<>();
 
   @Autowired
   public PortfolioController(StockMarket stockMarket, PortfolioRepository repository) {
@@ -26,16 +23,16 @@ public class PortfolioController {
     this.repository = repository;
   }
 
-  public void purchaseDollarAmount(String stockSymbol, double price) {
+  public void purchaseDollarAmount(Principal principal, String stockSymbol, double price) {
     double unitPrice = stockMarket.getUnitPrice(stockSymbol);
     int wholeShares = (int) (price / unitPrice);
-    holdings.put(stockSymbol, new Holding(stockSymbol, wholeShares, unitPrice));
+    repository.save(principal.getName(), new Holding(stockSymbol, wholeShares, unitPrice));
   }
 
-  @RequestMapping(value="/portfolio/{stockSymbol}", method=POST)
-  public String purchaseShares(String stockSymbol, @RequestParam int shares){
-    holdings.put(stockSymbol, new Holding(stockSymbol, shares, stockMarket.getUnitPrice(stockSymbol)));
-    return "portfolio/list";
+  @RequestMapping(value="/portfolio", method=POST)
+  public String purchaseShares(Principal principal, @RequestParam String stock, @RequestParam int shares){
+    repository.save(principal.getName(), new Holding(stock, shares, stockMarket.getUnitPrice(stock)));
+    return "redirect:/portfolio";
   }
 
   @RequestMapping(value="/portfolio", method=GET)
@@ -45,7 +42,7 @@ public class PortfolioController {
     return modelAndView;
   }
 
-  public Holding getHolding(String stockSymbol) {
-    return holdings.get(stockSymbol);
+  public Holding getHolding(Principal principal, String stockSymbol) {
+    return repository.getHolding(principal.getName(), stockSymbol);
   }
 }
