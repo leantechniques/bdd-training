@@ -1,5 +1,6 @@
 package co.leantechniques.config;
 
+import co.leantechniques.version.VersionConfig;
 import org.junit.Before;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
@@ -14,7 +15,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 
 @ActiveProfiles("test")
 @WebAppConfiguration
-@ContextConfiguration(classes = {ApplicationConfig.class, EmbeddedDataSourceConfig.class, JpaConfig.class, SecurityConfig.class, WebMvcConfig.class})
+@ContextConfiguration(classes = {ApplicationConfig.class, EmbeddedDataSourceConfig.class, JpaConfig.class, SecurityConfig.class, WebMvcConfig.class, VersionConfig.class})
 public abstract class WebAppConfigurationAware {
 
     @Inject

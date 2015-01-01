@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
 import co.leantechniques.config.WebSecurityConfigurationAware;
@@ -21,6 +22,7 @@ import co.leantechniques.config.WebSecurityConfigurationAware;
 public class UserAuthenticationIntegrationTest extends WebSecurityConfigurationAware {
 
     private static String SEC_CONTEXT_ATTR = HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY;
+
 
     @Test
     public void requiresAuthentication() throws Exception {

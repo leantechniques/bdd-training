@@ -1,5 +1,6 @@
 package co.leantechniques.config;
 
+import co.leantechniques.version.VersionConfig;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -15,7 +16,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[] {ApplicationConfig.class, DataSourceConfig.class, JpaConfig.class, SecurityConfig.class};
+        return new Class<?>[] {ApplicationConfig.class, DataSourceConfig.class, JpaConfig.class, SecurityConfig.class, VersionConfig.class};
     }
 
     @Override
