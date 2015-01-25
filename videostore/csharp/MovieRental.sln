@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieRental", "MovieRental\MovieRental.csproj", "{E422587D-C1AA-4700-85B6-A4069B38587F}"
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieRental", "src\MovieRental\MovieRental.csproj", "{E422587D-C1AA-4700-85B6-A4069B38587F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieRentalTest", "MovieRentalTest\MovieRentalTest.csproj", "{18360A47-B088-4BB3-ACC8-3900C22C1D10}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieRental.Test", "src\MovieRental.Test\MovieRental.Test.csproj", "{18360A47-B088-4BB3-ACC8-3900C22C1D10}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
