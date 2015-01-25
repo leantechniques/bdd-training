@@ -5,6 +5,9 @@ bin/
 .project
 *.iml
 .DS_Store
+*.suo
+*.user
 
 # Nuget packages
 packages/
+.settings/
