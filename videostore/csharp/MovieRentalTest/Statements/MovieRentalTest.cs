@@ -1,12 +1,12 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MovieRental.Statements;
+using NUnit.Framework;
 
 namespace MovieRentalTest.Statements
 {
-    [TestClass]
+    [TestFixture]
     public class MovieRentalTest
     {
-        [TestMethod]
+        [Test]
         public void ShouldProduceAStatement()
         {
             var customer = new Customer("Bob");
@@ -24,7 +24,7 @@ namespace MovieRentalTest.Statements
                                              "\tMagic Mike\t12\n" +
                                              "You owed 23.5\n" +
                                              "You earned 5 frequent renter points\n";
-
+            
             Assert.AreEqual(expectedStatement, bobsStatement);
         }
     }
