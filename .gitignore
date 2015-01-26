@@ -10,4 +10,7 @@ bin/
 
 # Nuget packages
 packages/
+
+# Eclipse Files
+.classpath
 .settings/
