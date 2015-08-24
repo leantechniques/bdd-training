@@ -1,30 +1,20 @@
 cmake_minimum_required(VERSION 2.8.4)
-project(cpp)
+project(gildedrose)
 
-# CMake FindThreads is broken until 3.1
-#find_package(Threads REQUIRED)
-set(CMAKE_THREAD_LIBS_INIT pthread)
+include_directories($ENV{GMOCK_HOME}/include $ENV{GMOCK_HOME}/gtest/include)
+link_directories($ENV{GMOCK_HOME}/mybuild $ENV{GMOCK_HOME}/gtest/mybuild)
+add_definitions(-std=c++0x)
+set(CMAKE_CXX_FLAGS "${CMAXE_CXX_FLAGS} -Wall")
 
-enable_testing()
-find_package(GTest REQUIRED)
-include_directories(${GTEST_INCLUDE_DIRS})
+set(sources
+    main.cpp
+    GildedRose.cpp
+    GildedRose.h)
 
-set(GILDED_ROSE_SOURCE_FILES
-    GildedRose.cc
-    GildedRose.h
-    GildedRoseUnitTests.cc)
+set(testSources
+    GildedRoseUnitTests.cpp)
 
-set(GILDED_ROSE_TEXT_TESTS_SOURCE_FILES
-    GildedRose.cc
-    GildedRose.h
-    GildedRoseTextTests.cc)
-
-set(SOURCE_FILES
-    ${GILDED_ROSE_SOURCE_FILES}
-    ${GILDED_ROSE_TEXT_TESTS_SOURCE_FILES})
-
-add_executable(GildedRose ${GILDED_ROSE_SOURCE_FILES})
-target_link_libraries(GildedRose ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
-
-add_executable(GildedRoseTextTests ${GILDED_ROSE_TEXT_TESTS_SOURCE_FILES})
-target_link_libraries(GildedRoseTextTests ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+add_executable(test ${testSources} ${sources})
+target_link_libraries(test pthread)
+target_link_libraries(test gmock)
+target_link_libraries(test gtest)

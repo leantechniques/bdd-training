@@ -14,3 +14,11 @@ packages/
 # Eclipse Files
 .classpath
 .settings/
+
+# cpp Files
+*.o
+*.a
+CMakeFiles/
+
+lib/
+!lib/run-once.sh
