@@ -3,4 +3,4 @@ export GMOCK_HOME=$gmock
 cmake .
 make all
 
-./test
+./testApp

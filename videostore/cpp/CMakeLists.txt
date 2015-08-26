@@ -9,7 +9,6 @@ set(CMAKE_CXX_FLAGS "${CMAXE_CXX_FLAGS} -Wall")
 include_directories(src)
 
 set(sources
-    src/main.cpp
     src/Customer.cpp
     src/Customer.h
     src/Movie.cpp
@@ -19,9 +18,11 @@ set(sources
     )
 
 set(testSources
-    tests/VideoStoreTest.cpp)
+    tests/main.cpp
+    tests/VideoStoreTest.cpp
+    )
 
-add_executable(test ${testSources} ${sources})
-target_link_libraries(test pthread)
-target_link_libraries(test gmock)
-target_link_libraries(test gtest)
+add_executable(testApp ${testSources} ${sources})
+target_link_libraries(testApp pthread)
+target_link_libraries(testApp gmock)
+target_link_libraries(testApp gtest)

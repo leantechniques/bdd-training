@@ -22,13 +22,13 @@ class VideoStoreTest : public ::testing::Test {
 };
 
 TEST_F(VideoStoreTest, singleNewReleaseStatement) {
-    customer->addRental (new Rental (newReleaseMovie), 3));		
+    customer->addRental (new Rental (newReleaseMovie, 3));		
     ASSERT_STREQ("Rental Record for Fred\n\tThe Cell\t9\nYou owed 9\nYou earned 2 frequent renter points\n", customer->statement().c_str());
 }
 
 TEST_F(VideoStoreTest, dualNewReleaseStatement) {
     customer->addRental (new Rental (newReleaseMovie, 3));
-    customer->addRental (new Rental (tiggerMovie), 3));		
+    customer->addRental (new Rental (tiggerMovie, 3));		
     ASSERT_STREQ("Rental Record for Fred\n\tThe Cell\t9\n\tThe Tigger Movie\t9\nYou owed 18\nYou earned 4 frequent renter points\n", customer->statement().c_str());
 }
 

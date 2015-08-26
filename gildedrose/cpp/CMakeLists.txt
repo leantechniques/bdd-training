@@ -6,15 +6,19 @@ link_directories($ENV{GMOCK_HOME}/mybuild $ENV{GMOCK_HOME}/gtest/mybuild)
 add_definitions(-std=c++0x)
 set(CMAKE_CXX_FLAGS "${CMAXE_CXX_FLAGS} -Wall")
 
+include_directories(src)
+
 set(sources
-    main.cpp
-    GildedRose.cpp
-    GildedRose.h)
+    src/GildedRose.cpp
+    src/GildedRose.h
+   )
 
 set(testSources
-    GildedRoseUnitTests.cpp)
+    tests/main.cpp
+    tests/GildedRoseUnitTests.cpp
+   )
 
-add_executable(test ${testSources} ${sources})
-target_link_libraries(test pthread)
-target_link_libraries(test gmock)
-target_link_libraries(test gtest)
+add_executable(testApp ${sources} ${testSources})
+target_link_libraries(testApp pthread)
+target_link_libraries(testApp gmock)
+target_link_libraries(testApp gtest)

@@ -1,6 +1,4 @@
-//#include <gtest/gtest.h>
 #include "gmock/gmock.h"
-
 #include "GildedRose.h"
 
 TEST(GildedRoseTest, Foo) {
@@ -9,10 +7,6 @@ TEST(GildedRoseTest, Foo) {
     GildedRose app(items);
     app.updateQuality();
     EXPECT_EQ("Foo", app.items[0].name);
-}
-
-TEST(GildedRoseTest, Hi){
-    EXPECT_EQ("hi", "nope");
 }
 
 void example()
