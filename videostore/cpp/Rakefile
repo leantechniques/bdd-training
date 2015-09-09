@@ -1,0 +1,4 @@
+desc 'cmake Xcode Generator'
+task :xcode do
+    p 'cmake . -G "Xcode"'
+end
