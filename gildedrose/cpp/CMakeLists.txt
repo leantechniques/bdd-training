@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.4)
 project(gildedrose)
 
 include_directories($ENV{GMOCK_HOME}/include $ENV{GMOCK_HOME}/gtest/include)
-link_directories($ENV{GMOCK_HOME}/mybuild $ENV{GMOCK_HOME}/gtest/mybuild)
+link_directories($ENV{GMOCK_HOME}/ $ENV{GMOCK_HOME}/gtest/)
 add_definitions(-std=c++0x)
 set(CMAKE_CXX_FLAGS "${CMAXE_CXX_FLAGS} -Wall")
 
