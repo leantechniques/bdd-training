@@ -1,6 +1,6 @@
 package domain;
 
-public class Rental
+abstract class Rental
 {
 	public Rental (Movie movie, int daysRented) {
 		this.movie 		= movie;
@@ -17,4 +17,8 @@ public class Rental
 	
 	private Movie movie;
 	private int daysRented;
+
+	public abstract int calculatePoints();
+
+	abstract double calculatePrice();
 }
