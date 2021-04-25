@@ -29,3 +29,5 @@ Makefile
 
 lib/
 
+node_modules/
+coverage/
