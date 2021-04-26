@@ -45,6 +45,21 @@
       ],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "name": "Debug String Calculator",
+      "type": "node",
+      "cwd": "${workspaceRoot}/stringcalculator/typescript",
+      "request": "launch",
+      "runtimeArgs": [
+        "--inspect-brk",
+        "${workspaceRoot}/stringcalculator/typescript/node_modules/jest/bin/jest.js",
+        "--runInBand",
+        "--coverage",
+        "false"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
     }
   ]
 }
