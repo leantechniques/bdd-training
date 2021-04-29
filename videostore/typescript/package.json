@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --watch --collectCoverage"
+    "test:watch": "jest --watchAll",
+    "test:coverage": "jest --watchAll --collectCoverage"
   },
   "repository": {
     "type": "git",

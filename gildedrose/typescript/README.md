@@ -6,6 +6,7 @@
    - `npm test` to run your tests without watch mode
    - `npm run test:watch` to run your tests in watch mode
    - `npm run test:coverage` to run your tests in watch and collectCoverage mode
+1. Running the app with `npm start`
 
 # Debug on VS Code
 
