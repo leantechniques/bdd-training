@@ -1,0 +1,65 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Gilded Rose",
+      "type": "node",
+      "cwd": "${workspaceRoot}/gildedrose/typescript",
+      "request": "launch",
+      "runtimeArgs": [
+        "--inspect-brk",
+        "${workspaceRoot}/gildedrose/typescript/node_modules/jest/bin/jest.js",
+        "--runInBand",
+        "--coverage",
+        "false"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "name": "Debug Stack",
+      "type": "node",
+      "cwd": "${workspaceRoot}/stack/typescript",
+      "request": "launch",
+      "runtimeArgs": [
+        "--inspect-brk",
+        "${workspaceRoot}/stack/typescript/node_modules/jest/bin/jest.js",
+        "--runInBand",
+        "--coverage",
+        "false"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "name": "Debug Video Store",
+      "type": "node",
+      "cwd": "${workspaceRoot}/videostore/typescript",
+      "request": "launch",
+      "runtimeArgs": [
+        "--inspect-brk",
+        "${workspaceRoot}/videostore/typescript/node_modules/jest/bin/jest.js",
+        "--runInBand",
+        "--coverage",
+        "false"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "name": "Debug String Calculator",
+      "type": "node",
+      "cwd": "${workspaceRoot}/stringcalculator/typescript",
+      "request": "launch",
+      "runtimeArgs": [
+        "--inspect-brk",
+        "${workspaceRoot}/stringcalculator/typescript/node_modules/jest/bin/jest.js",
+        "--runInBand",
+        "--coverage",
+        "false"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    }
+  ]
+}
