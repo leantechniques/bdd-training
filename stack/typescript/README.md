@@ -25,3 +25,9 @@
 - **package.json** - Used by Node to manage packages and scripts (such as `npm test` mentioned above)
 - **TypeScript** - Syntactic superset of JavaScript (almost all valid JavaScript is valid TypeScript). Adds static types and other features to JavaScript. Compiles down to JavaScript in order to execute the code. Configured using a `tsconfig.json`.
 - **Jest** - JavaScript testing framework with a test runner, mocking, assertions, code coverage, watch mode, and more.
+
+# Stack Requirements
+
+- Put should place a new item on the top of the stack
+- Pop should remove and return the top item of the stack
+- Size returns the length of the stack
