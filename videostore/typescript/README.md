@@ -24,3 +24,9 @@
 - **package.json** - Used by Node to manage packages and scripts (such as `npm test` mentioned above)
 - **TypeScript** - Syntactic superset of JavaScript (almost all valid JavaScript is valid TypeScript). Adds static types and other features to JavaScript. Compiles down to JavaScript in order to execute the code. Configured using a `tsconfig.json`.
 - **Jest** - JavaScript testing framework with a test runner, mocking, assertions, code coverage, watch mode, and more.
+
+# Video Store Requirements
+
+Refactor Video Store. The Video Store example is from Martin Fowler's Refactoring, and from Episode 3 of cleancoders.com
+
+Original in Java: https://github.com/unclebob/videostore
