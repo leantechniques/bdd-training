@@ -25,3 +25,18 @@
 - **package.json** - Used by Node to manage packages and scripts (such as `npm test` mentioned above)
 - **TypeScript** - Syntactic superset of JavaScript (almost all valid JavaScript is valid TypeScript). Adds static types and other features to JavaScript. Compiles down to JavaScript in order to execute the code. Configured using a `tsconfig.json`.
 - **Jest** - JavaScript testing framework with a test runner, mocking, assertions, code coverage, watch mode, and more.
+
+# String Calculator Requirements
+
+1. “” = 0
+1. “1” = 1
+1. “1,2” = 3
+1. Any amount of numbers: “1,2,3,4,5,6” = 21
+1. Allow newlines and commas
+   - “1\n2,3” = 6
+1. Allow Different Delimiters
+   - “//[delimiter]\n[numbers…]”
+   - “//;\n1;2;3;4;5;6” = 21
+   - “//\n\n1\n2\n3\n4\n5\n6”
+1. When the sum is evenly divisible by 7 or 11, return a random number between 1..100.
+1. Write the value to a database each time add(..) is called.
