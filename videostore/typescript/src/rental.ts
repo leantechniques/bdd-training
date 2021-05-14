@@ -1,5 +1,6 @@
 import { Movie } from "./movie";
 
-export class Rental {
-  public constructor(readonly movie: Movie, readonly daysRented: number) {}
+export type Rental = {
+  movie: Movie;
+  daysRented: number;
 }

@@ -1,7 +1,10 @@
-export class Movie {
-  static readonly REGULAR = 1;
-  static readonly NEW_RELEASE = 2;
-  static readonly CHILDREN = 3;
+export type Movie = {
+  title: string;
+  code: MovieCode;
+};
 
-  constructor(readonly title: string, public priceCode: number) {}
+export enum MovieCode {
+  Regular = 1,
+  NewRelease = 2,
+  Children = 3,
 }
