@@ -13,8 +13,23 @@ it("should return numeric value of when numeric string is passed", () => {
     expect(result2).toEqual(2);
 });
 
-it("should return 3 when 1, 2 is given", () => {
+it("should return sum when comma delimitaed is given", () => {
     const result1 = add("1,2");
     expect(result1).toEqual(3);
+
+    const result2 = add("1,2,3");
+    expect(result2).toEqual(6);
 });
 
+it("should return sum when newline delimitaed is given", () => {
+    const result1 = add("1\n2");
+    expect(result1).toEqual(3);
+
+    const result2 = add("1\n2\n3");
+    expect(result2).toEqual(6);
+});
+
+it("should return sum when newline and comma delimitaed is given", () => {
+    const result2 = add("1,2\n3");
+    expect(result2).toEqual(6);
+});
