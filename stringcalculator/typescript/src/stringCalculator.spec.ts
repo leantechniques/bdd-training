@@ -35,6 +35,12 @@ it("should return sum when newline and comma delimitaed is given", () => {
 });
 
 it("should return sum when newline and comma delimitaed is given", () => {
-    const result2 = add("//;\n1;2;3;4;5;6");
-    expect(result2).toEqual(21);
+    const result2 = add("//;\n1;2;3;4;5;8");
+    expect(result2).toEqual(23);
+});
+
+it("should mock", () => {
+    jest.spyOn(global.Math, "random").mockReturnValue(0.42);
+    const result = add('7');
+    expect(result).toEqual(42);
 });
