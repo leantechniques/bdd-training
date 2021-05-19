@@ -33,3 +33,8 @@ it("should return sum when newline and comma delimitaed is given", () => {
     const result2 = add("1,2\n3");
     expect(result2).toEqual(6);
 });
+
+it("should return sum when newline and comma delimitaed is given", () => {
+    const result2 = add("//;\n1;2;3;4;5;6");
+    expect(result2).toEqual(21);
+});
